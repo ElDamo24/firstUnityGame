@@ -1,12 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Globalization;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerScript : MonoBehaviour
 {
     private float horizontalMovement;
     private float verticalMovement;
+    [SerializeField]
+    private GameObject jumpSound;
+    [SerializeField]
+    private Text scoreText;
     [SerializeField]
     private float speedMovement;
     private float jumpVelocity;
@@ -21,6 +27,7 @@ public class playerScript : MonoBehaviour
         speedMovement = 7f;
         jumpVelocity = 100f;
         score = 0;
+        scoreText.text = "SCORE: " + score.ToString();
 }
 
     // Update is called once per frame
@@ -32,6 +39,7 @@ public class playerScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && onTheFloor)
         {
+            Instantiate(jumpSound);
             rb.velocity = new Vector3(0, jumpVelocity * Time.deltaTime, 0);
             onTheFloor = false;
         }
@@ -44,6 +52,7 @@ public class playerScript : MonoBehaviour
         {
             speedMovement = 7f;
         }
+        scoreText.text = "Score: " + score.ToString();
     }
 
     private void OnCollisionEnter(Collision collision)

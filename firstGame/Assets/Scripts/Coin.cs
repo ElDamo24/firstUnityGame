@@ -7,7 +7,9 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     private float speed;
-    private playerScript playerScore; 
+    private playerScript playerScore;
+    [SerializeField]
+    private GameObject coinSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,7 @@ public class Coin : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            Instantiate(coinSound);
             Destroy(this.gameObject);
             playerScore.score += 5;
         }
