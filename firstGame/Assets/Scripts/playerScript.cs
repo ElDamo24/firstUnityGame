@@ -15,6 +15,7 @@ public class playerScript : MonoBehaviour
     private Text scoreText;
     [SerializeField]
     private float speedMovement;
+    private float speedRotation;
     private float jumpVelocity;
     private bool onTheFloor;
     private Rigidbody rb;
@@ -28,6 +29,7 @@ public class playerScript : MonoBehaviour
         jumpVelocity = 100f;
         score = 0;
         scoreText.text = "SCORE: " + score.ToString();
+        speedRotation = 100f;
 }
 
     // Update is called once per frame
@@ -35,7 +37,9 @@ public class playerScript : MonoBehaviour
     {
         horizontalMovement = Input.GetAxis("Horizontal");
         verticalMovement = Input.GetAxis("Vertical");
-        transform.Translate(new Vector3(horizontalMovement, 0, verticalMovement) * speedMovement * Time.deltaTime);
+        transform.Translate(new Vector3(0, 0, verticalMovement) * speedMovement * Time.deltaTime);
+        transform.Rotate(new Vector3(0, horizontalMovement, 0) * speedRotation * Time.deltaTime);
+        
 
         if (Input.GetKeyDown(KeyCode.Space) && onTheFloor)
         {
