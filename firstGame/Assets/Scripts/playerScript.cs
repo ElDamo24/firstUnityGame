@@ -12,8 +12,10 @@ public class playerScript : MonoBehaviour
     [SerializeField]
     private GameObject jumpSound;
     [SerializeField]
-    private Text scoreText;
+    private Text lifeText;
     [SerializeField]
+    private Text scoreText;
+    public int life;
     private float speedMovement;
     private float speedRotation;
     private float jumpVelocity;
@@ -30,6 +32,8 @@ public class playerScript : MonoBehaviour
         score = 0;
         scoreText.text = "SCORE: " + score.ToString();
         speedRotation = 100f;
+        life = 100;
+        lifeText.text = "LIFE: " + life.ToString();
 }
 
     // Update is called once per frame
@@ -56,7 +60,9 @@ public class playerScript : MonoBehaviour
         {
             speedMovement = 7f;
         }
+
         scoreText.text = "Score: " + score.ToString();
+        lifeText.text = "LIFE: " + life.ToString();
     }
 
     private void OnCollisionEnter(Collision collision)
